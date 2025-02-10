@@ -19,5 +19,5 @@ jobs:
         with:
           name: PDF
           path: |
-            Digital Design Textbook.pdf
-            Digital Design Workbook.pdf
+            Digital\ Design\ Textbook.pdf
+            Digital\ Design\ Workbook.pdf
