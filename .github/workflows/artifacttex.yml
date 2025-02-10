@@ -12,12 +12,12 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: |
-            Textbook\ Latex/Digital\ Design\ Textbook.tex
-            Textbook\ Latex/Digital\ Design\ Workbook.tex
+            "Textbook Latex/Digital Design Textbook.tex"
+            "Digital-Design/Textbook Latex/Digital Design Workbook.tex"
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
         with:
           name: PDF
           path: |
-            Digital\ Design\ Textbook.pdf
-            Digital\ Design\ Workbook.pdf
+            "Digital Design Textbook.pdf"
+            "Digital Design Workbook.pdf"
