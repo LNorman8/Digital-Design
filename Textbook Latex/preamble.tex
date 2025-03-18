@@ -1,7 +1,7 @@
 %%------------------------------------------------------
 %% Document formatting standards.
-%% references labels            figure:<camelCase>
-%%                        \tableofcontents:<camelCase>
+%% references labels      figure:<camelCase>
+%%                       \tableofcontents:<camelCase>
 %%                        section:<dash seperated>
 %%                        index:<camelCase>
 %%                        example:<camelCase>
@@ -12,25 +12,28 @@
 \usepackage[export]{adjustbox}   % Allows greater control over the placement and sizing of graphics
 \usepackage{imakeidx}            % Enables Index functionality
 \usepackage{wrapfig}
+\usepackage{listings}
 
 %% Lots of packages needed for tables
 \usepackage{xcolor,colortbl}    % Enable colors in tables
-\usepackage{mdframed}
+\usepackage{mdframed}           % Enables framed boxes
 
-\usepackage{multirow}
+\usepackage{multirow}           % Allows rows to span multiple rows
+%\usepackage{array}              % Allows for more control over table columns
 \usepackage{hhline}             % allows partial hlines in multirow tables
 \usepackage{longtable}          % Enables multipage tables
 \usepackage{makecell}           % deal with parboxes inside tables
+\usepackage{marginfit}          % Fixes some of the margin issues with tables. Not the issue we're fighting with
 
 \usepackage{amsmath}            % Enables a range of useful math notation
 \usepackage{mathtools}          % Extends amsmath
 %\usepackage{breqn}             % Enables breaking long equations (loading before amssymb is recommended)
 \usepackage{amssymb}
 
-\usepackage{soul}
+\usepackage{soul}               % Enables underlining and highlighting
 
-\usepackage{tikz}            % Enable drawing simples shapes over text
-\usepackage{subcaption}      % Enables tables to not have a caption but to increment the table counter
+\usepackage{tikz}               % Enable drawing simples shapes over text
+\usepackage{subcaption}         % Enables tables to not have a caption but to increment the table counter
 
 % This allows conditional formatting of the problem/solution manual
 %    \showanswers
@@ -160,6 +163,6 @@
 \newcommand{\Rb}{$\text{ R}_\text{ b} \ $}
 
 % Spacing macros
-\newcommand{\1}{\ensuremath{\;\!}} % 2/18 of a quad to provide minimal grouping hints
-\newcommand{\0}{\phantom{0}} % width of zero; for formatting addition
+\newcommand{\1}{\ensuremath{1\phantom{0}}} % width of a one with a blank after it; for formatting addition
+\newcommand{\0}{\ensuremath{\phantom{0}}} % width of zero; for formatting addition
 \newcommand{\9}{\ensuremath{\,\phantom{0}}} % Zero with a large grouping space after.

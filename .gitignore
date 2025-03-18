@@ -1,3 +1,4 @@
+# If a student finds this repo, they've gotta at least put in the trivial effort of compiling the tex files themselves
 Textbook Latex/Digital Design Homework Solutions.pdf
 
 # Allow me to only generate what I'm editing, without affecting you
@@ -14,6 +15,7 @@ Textbook Latex/Digital Design Homework Solutions.tex
 *.out
 *.synctex
 *.synctex.gz
+*.synctex(busy)
 *.toc
 *.lobb
 *.lop
