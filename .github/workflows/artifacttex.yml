@@ -6,22 +6,28 @@ jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
-        with:
-          work_in_root_file_dir: true
-          continue_on_error: true
-          root_file: |
-            Textbook-Latex/Digital-Design-Textbook.tex
-            Laboratory-Latex/Digital-Design-Labs.tex
-      - name: Upload PDF files
-        uses: actions/upload-artifact@v4
-        with:
-          name: PDF
-          path: |
-            Textbook-Latex/Digital-Design-Textbook.tex
-            Laboratory-Latex/Digital-Design-Labs.tex
+    - name: Set up Git repository
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+    - name: Compile LaTeX document
+      uses: xu-cheng/latex-action@v3
+      with:
+        work_in_root_file_dir: true
+        continue_on_error: true
+        root_file: |
+          Textbook-Latex/Digital-Design-Textbook.tex
+          Laboratory-Latex/Digital-Design-Labs.tex
+    - name: Move Files
+      run: mv Textbook-Latex/Digital-Design-Textbook.tex "Digital Design Textbook.tex" && mv Laboratory-Latex/Digital-Design-Labs.tex "Digital Design Labs.tex"
+    - name: Setup Git Config
+      run: |
+        # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+    - name: Commit
+      run: |
+        # Stage the file, commit and push
+        git add "Digital Design Textbook.tex" "Digital Design Labs.tex"
+        git commit -m "new main pdf commit"
+        git push origin master
