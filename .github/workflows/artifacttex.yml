@@ -19,15 +19,13 @@ jobs:
           Textbook-Latex/Digital-Design-Textbook.tex
           Laboratory-Latex/Digital-Design-Labs.tex
     - name: Move Files
-      run: mv Textbook-Latex/Digital-Design-Textbook.tex "Digital Design Textbook.tex" && mv Laboratory-Latex/Digital-Design-Labs.tex "Digital Design Labs.tex"
+      run: mv Textbook-Latex/Digital-Design-Textbook.pdf "Digital Design Textbook.pdf" && mv Laboratory-Latex/Digital-Design-Labs.pdf "Digital Design Labs.pdf"
     - name: Setup Git Config
       run: |
-        # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
     - name: Commit
       run: |
-        # Stage the file, commit and push
-        git add "Digital Design Textbook.tex" "Digital Design Labs.tex"
-        git commit -m "new main pdf commit"
-        git push origin master
+        git add "Digital Design Textbook.pdf" "Digital Design Labs.pdf"
+        git commit -m "Update pdfs"
+        git push origin main
