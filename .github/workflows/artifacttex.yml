@@ -1,23 +1,34 @@
-name: Build LaTeX document
-on: [push]
+name: book-maker
+
+on: push
+
 jobs:
-  build_latex:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
-        with:
-          work_in_root_file_dir: true
-          continue_on_error: true
-          root_file: './Textbook Latex/Digital Design Textbook.tex'
-      - name: Upload PDF file
-        uses: actions/upload-artifact@v4
-        with:
-          name: PDF
-          path: |
-            Digital Design Textbook.pdf
-            Digital Design Workbook.pdf
+    env:
+      # This needs fixing
+      BOOK_PATH: Textbook Latex
+      LATEX: pdflatex -shell-escape
+      BIBTEX: bibtex
+    steps: 
+    - uses: actions/checkout@v1
+    - name: Install texlive
+      run: |
+        sudo apt-get install texlive-publishers \
+                             texlive-latex-recommended \
+                             texlive-latex-extra \
+                             texlive-fonts-recommended \
+                             texlive-fonts-extra
+    - name: Build paper
+      run: |
+        echo ${MANUSCRIPT_PATH}.tex
+        ${LATEX} "${MANUSCRIPT_PATH}.tex"
+        ${LATEX} "${MANUSCRIPT_PATH}.tex"
+    - name: Push paper
+      run: |
+        git checkout --orphan ${GITHUB_REF##*/}-pdf
+        git rm -rf .github/
+        git rm -rf . 
+        git add -f ${MANUSCRIPT_PATH##*/}.pdf
+        git -c user.name='paper-maker' -c user.email='paper-maker' commit -m "update pdf"
+        git push -q -f https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} ${GITHUB_REF##*/}-pdf
