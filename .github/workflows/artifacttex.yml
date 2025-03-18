@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # This needs fixing
-      BOOK_PATH: Textbook Latex
+      BOOK_PATH: Textbook Latex/Digital Design Textbook.tex
       LATEX: pdflatex -shell-escape
       BIBTEX: bibtex
     steps: 
